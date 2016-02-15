@@ -1,10 +1,10 @@
 # Environement for the frontend
 
-* node5.1
-* phantomjs 2.0
+* node5.5
+* phantomjs 2.1
 
 ## Installation
 
-    docker build . talkspirit/frontend
-    docker tag talkspirit/frontend talkspirit/frontend:5.1
-    docker push talkspirit/frontend::5.1
+    docker build frontend
+    docker tag a6bded86dfc5  talkspirit/frontend:5.5 (a6bded86dfc5 is the image id)
+    docker push talkspirit/frontend:5.5
