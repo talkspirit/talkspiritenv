@@ -1,4 +1,4 @@
-FROM node:5.5
+FROM node:6.4
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y build-essential debhelper devscripts vi
 
 RUN mkdir /tmp/phantomjs
 
-RUN wget -q -O- https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 | \
+RUN wget --max-redirect=3 -q -O- https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 | \
     tar -xj -C /tmp/phantomjs \
     && cp /tmp/phantomjs/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs \
     && rm -rf /tmp/*
