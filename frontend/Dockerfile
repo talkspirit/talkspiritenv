@@ -1,19 +1,13 @@
-FROM node:5.5
+FROM node:6.2.1
 
 ENV DEBIAN_FRONTEND noninteractive
 
 # to build package
-RUN apt-get update && apt-get install -y build-essential debhelper devscripts vim curl sudo
+RUN apt-get update && apt-get upgrade -y
 
-RUN mkdir /tmp/phantomjs
+RUN apt-get install -y build-essential debhelper devscripts vim curl sudo
 
-RUN wget -q -O- https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 | \
-    tar -xj -C /tmp/phantomjs \
-    && cp /tmp/phantomjs/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs \
-    && rm -rf /tmp/*
-
-RUN apt-get install -y ruby
-RUN gem install sass
-RUN npm install -g bower grunt-cli grunt jshint
+RUN sudo echo "Europe/Paris" > /etc/timezone
+RUN sudo dpkg-reconfigure -f noninteractive tzdata
 
 CMD ["bash"]
