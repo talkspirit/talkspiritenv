@@ -1,9 +1,9 @@
-FROM node:10.16.0
+FROM node:10.20.0
 
 ENV DEBIAN_FRONTEND noninteractive
 
 # to build package
-RUN apt-get update && apt-get install -y build-essential debhelper devscripts vim curl sudo libgconf-2-4
+RUN apt-get update && apt-get install -y build-essential debhelper devscripts vim curl sudo libgconf-2-4 apt-transport-https ca-certificates
 
 # Note: this installs the necessary libs to make the bundled version of Chromium that Puppeteer
 # installs, work.
@@ -16,6 +16,10 @@ RUN apt-get update && apt-get install -y wget --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get purge --auto-remove -y \
     && rm -rf /src/*.deb
+
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+RUN sudo apt-get update && sudo apt-get install -y yarn
 
 RUN npm install -g grunt-cli grunt jshint
 
