@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y wget --no-install-recommends \
 
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-RUN sudo apt-get update && sudo apt-get install -y yarn
+RUN sudo apt-get update && sudo apt-get install -y yarn && ln -sf /usr/share/yarn/bin/yarn /usr/local/bin/yarn
 
 RUN npm install -g grunt-cli grunt jshint
 
