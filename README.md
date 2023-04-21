@@ -2,6 +2,6 @@ talkSpirit Env
 
 # Version 
 
-La version [16.13-buster](https://hub.docker.com/layers/node/library/node/16.13-buster/images/sha256-af7e2f1a770d1e9a8d3199bde06490de296837644bd9b292b8f28af6e2aa504d?context=explore) correspond à la version [lts-buster](https://hub.docker.com/layers/node/library/node/16.13-buster/images/sha256-af7e2f1a770d1e9a8d3199bde06490de296837644bd9b292b8f28af6e2aa504d?context=explore) de node au 10/11/2021.
+La version [18.16-buster](https://hub.docker.com/layers/library/node/18.16.0-buster/images/sha256-69c8d49e06ae8c03fedf3de8376edc7835af99cafb94c4c8924dbd8ded9e4352?context=explore) correspond à la version lts-buster de node au 13.04.2023
 
-L'image `talkspiritenv` est accessible avec le tag `talkspirit/talkspiritenv:16.13`
+L'image `talkspiritenv` est accessible avec le tag `talkspirit/talkspiritenv:18.16`
