@@ -23,4 +23,16 @@ RUN sudo apt-get update && sudo apt-get install -y yarn && ln -sf /usr/share/yar
 
 RUN npm install -g grunt-cli grunt jshint
 
+RUN apt-get install -y git curl libssl-dev libreadline-dev zlib1g-dev autoconf bison build-essential libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-dev
+
+RUN curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
+RUN echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+RUN echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+RUN $HOME/.rbenv/bin/rbenv init -
+RUN $HOME/.rbenv/bin/rbenv install 3.2.2
+RUN $HOME/.rbenv/bin/rbenv global 3.2.2
+
+RUN echo "gem: --no-document" > ~/.gemrc
+RUN "$($HOME/.rbenv/bin/rbenv which gem)"  install bundler
+
 CMD ["bash"]
