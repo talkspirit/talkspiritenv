@@ -1,6 +1,6 @@
 FROM node:20.9-bullseye
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 # to build package
 RUN apt-get update && apt-get install -y build-essential debhelper devscripts vim curl sudo libgconf-2-4 apt-transport-https ca-certificates
