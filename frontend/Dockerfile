@@ -1,18 +1,14 @@
-FROM node:20.9-bullseye
+FROM node:22.16.0-bullseye
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 # to build package
 RUN apt-get update && apt-get install -y build-essential debhelper devscripts vim curl sudo libgconf-2-4 apt-transport-https ca-certificates
 
 # Note: this installs the necessary libs to make the bundled version of Chromium that Puppeteer
 # installs, work.
-RUN apt-get update && apt-get install -y wget --no-install-recommends \
-    && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-    && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
-    && apt-get update \
-    && apt-get install -y google-chrome-unstable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst fonts-freefont-ttf \
-      --no-install-recommends \
+RUN apt-get update \
+    && apt-get install -y chromium fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst fonts-freefont-ttf \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get purge --auto-remove -y \
     && rm -rf /src/*.deb
