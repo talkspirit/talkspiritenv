@@ -1,4 +1,4 @@
-FROM node:22.16.0-bullseye
+FROM node:22.23.4-bookworm
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -17,6 +17,11 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 RUN sudo apt-get update && sudo apt-get install -y yarn && ln -sf /usr/share/yarn/bin/yarn /usr/local/bin/yarn
 
-RUN npm install -g grunt-cli grunt jshint playwright@1.39.0 && npx playwright install --with-deps
+# Playwright 1.39 downloads browsers from playwright.azureedge.net, which no longer
+# serves them; point it at Microsoft's current download host instead. Only Chromium
+# is still published there for this version (Firefox/WebKit builds return 400).
+RUN npm install -g grunt-cli grunt jshint playwright@1.39.0 \
+    && PLAYWRIGHT_DOWNLOAD_HOST=https://playwright.download.prss.microsoft.com/dbazure/download/playwright \
+    npx playwright install --with-deps chromium
 
 CMD ["bash"]
