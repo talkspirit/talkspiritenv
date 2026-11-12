@@ -2,4 +2,4 @@ talkSpirit Env
 
 # Version 
 
-L'image `talkspiritenv` est accessible avec le tag `talkspirit/talkspiritenv:22.23.4`
+L'image `talkspiritenv` est accessible avec le tag `talkspirit/talkspiritenv:22.23.5`
